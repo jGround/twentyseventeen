@@ -2113,6 +2113,7 @@ h2.widget-title {
 	-webkit-transition: background-color 0.2s ease-in-out;
 	transition: background-color 0.2s ease-in-out;
 	width: 40px;
+	content: "\f107"; /* Fallback for unsupported links */
 }
 
 .social-navigation a:hover:before,
