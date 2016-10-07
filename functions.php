@@ -227,6 +227,10 @@ function twentyseventeen_scripts() {
 	wp_enqueue_script( 'html5', get_template_directory_uri() . '/assets/js/html5.js', array(), '3.7.3' );
 	wp_script_add_data( 'html5', 'conditional', 'lt IE 9' );
 
+	// Load flexbox support for IE9 and lower.
+	wp_enqueue_script( 'flexibility', get_template_directory_uri() . '/assets/js/flexibility.js', array(), '2.0.1' );
+	wp_script_add_data( 'flexibility', 'conditional', 'lte IE 9' );
+
 	wp_enqueue_script( 'twentyseventeen-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'twentyseventeen-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20151215', true );

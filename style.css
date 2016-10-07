@@ -370,8 +370,6 @@ template {
 .pagination:after,
 .comment-author:before,
 .comment-author:after,
-.widget-area:before,
-.widget-area:after,
 .widget:before,
 .widget:after,
 .comment-meta:before,
@@ -580,7 +578,7 @@ q:after {
 
 /* Typography for Thai Font */
 
-html[lang="th"] h1, 
+html[lang="th"] h1,
 html[lang="th"] h2,
 html[lang="th"] h3,
 html[lang="th"] h4,
@@ -960,12 +958,6 @@ body {
 	max-width: 700px;
 	padding-left: 2em;
 	padding-right: 2em;
-}
-
-.wrap:after {
-	clear: both;
-	content: "";
-	display: block;
 }
 
 /*--------------------------------------------------------------
@@ -1443,10 +1435,6 @@ body.page:not(.twentyseventeen-front-page) .entry-title {
 	padding: 0.25em 0.5em 0.4em;
 }
 
-.prev.page-numbers {
-	float: left;
-}
-
 .prev.page-numbers:before {
 	content: "\f430";
 }
@@ -1666,6 +1654,16 @@ body:not(.twentyseventeen-front-page) .entry-header {
 
 .post-navigation .nav-links {
 	padding: 1em 0;
+}
+
+.post-navigation a:hover,
+.post-navigation a:focus {
+	background: none;
+}
+
+.nav-previous a,
+.nav-next a {
+	display: block;
 }
 
 .nav-subtitle {
@@ -2096,19 +2094,22 @@ h2.widget-title {
 .social-navigation {
 	font-size: 16px;
 	font-size: 1.0rem;
+	margin-top: 1rem;
 	margin-bottom: 1em;
 }
 
 .social-navigation ul {
+	-js-display: flex;
+	display: flex;
+	flex-wrap: wrap;
 	list-style: none;
 	margin-bottom: 0;
 	margin-left: 0;
 }
 
 .social-navigation li {
-	display: inline;
+	margin: 0 1em 1em 0;
 }
-
 .social-navigation a:before {
 	background: #bbb;
 	border-radius: 40px;
@@ -2116,7 +2117,6 @@ h2.widget-title {
 	display: inline-block;
 	height: 40px;
 	line-height: 40px;
-	margin: 0 1em 0 0;
 	text-align: center;
 	-webkit-transition: background-color 0.2s ease-in-out;
 	transition: background-color 0.2s ease-in-out;
@@ -2623,23 +2623,27 @@ article.panel-placeholder {
 
 	/* Layout */
 
+	.site-content .wrap {
+		-js-display: flex;
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.wrap {
 		max-width: 1000px;
 	}
 
 	.has-sidebar:not(.error404) #primary {
-		float: left;
 		width: 58%;
 	}
 
 	.has-sidebar #secondary {
-		float: right;
 		padding-top: 0;
 		width: 36%;
 	}
 
 	.error404 #primary {
-		float: none;
+		width: 100%;
 	}
 
 	/* Site Branding */
@@ -2738,8 +2742,14 @@ article.panel-placeholder {
 	}
 
 	.js .main-navigation ul,
-	.js .main-navigation ul ul,
-	.js .main-navigation > div > ul {
+	.js .main-navigation > div > ul,
+	.js .main-navigation.toggled-on > div > ul {
+		-js-display: flex;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.js .main-navigation ul ul {
 		display: block;
 	}
 
@@ -2756,14 +2766,10 @@ article.panel-placeholder {
 
 	.main-navigation li {
 		border: 0;
-		display: inline-block;
-	}
-
-	.main-navigation li li {
-		display: block;
 	}
 
 	.main-navigation a {
+		display: block;
 		padding: 1em 1.25em;
 	}
 
@@ -2936,12 +2942,10 @@ article.panel-placeholder {
 	}
 
 	.panel-content .entry-header {
-		float: left;
 		width: 36%;
 	}
 
 	.panel-content .entry-content {
-		float: right;
 		width: 58%;
 	}
 
@@ -2984,18 +2988,17 @@ article.panel-placeholder {
 		font-size: 1.625rem;
 	}
 
-	.comment-navigation,
-	.post-navigation {
-		clear: both;
+	.nav-links {
+		-js-display: flex;
+		display: flex;
+		justify-content: space-between;
 	}
 
 	.post-navigation .nav-previous {
-		float: left;
 		width: 50%;
 	}
 
 	.post-navigation .nav-next {
-		float: right;
 		text-align: right;
 		width: 50%;
 	}
@@ -3007,10 +3010,17 @@ article.panel-placeholder {
 
 	/* Blog, archive, search */
 
+	body:not(.has-sidebar):not(.twentyseventeen-front-page) .hentry,
+	body.has-sidebar.error404 .error-404 {
+		-js-display: flex;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
 	body:not(.has-sidebar) .page-header,
 	body.has-sidebar.error404 #primary .page-header,
 	body.page-two-column #primary .entry-header {
-		float: left;
 		width: 36%;
 	}
 
@@ -3020,7 +3030,6 @@ article.panel-placeholder {
 	.error404:not(.has-sidebar) #primary .page-content,
 	.error404.has-sidebar #primary .page-content,
 	body.page-two-column #primary .entry-content {
-		float: right;
 		width: 58%;
 	}
 
@@ -3160,6 +3169,7 @@ article.panel-placeholder {
 	.nav-links .nav-next .nav-title:after {
 		color: #222;
 		position: absolute;
+		top: -0.2em;
 		text-align: center;
 		width: 1.5em;
 	}
@@ -3196,25 +3206,32 @@ article.panel-placeholder {
 		line-height: 1.6;
 	}
 
+	.site-footer .widget-area {
+		-js-display: flex;
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.site-footer .widget-column {
-		float: left;
 		width: 36%;
 	}
 
 	.site-footer .widget-column:last-child {
-		float: right;
 		width: 58%;
 	}
 
+	.footer-ephemera {
+		-js-display: flex;
+		display: flex;
+	}
+
 	.social-navigation {
-		clear: left;
-		float: left;
-		width: 36%;
+		width: 42%;
+		padding-right: 2em;
 	}
 
 	.site-info {
-		float: left;
-		margin-left: 6%;
+		line-height: 4em;
 		padding: 0.5em 0 0;
 		width: 58%;
 	}

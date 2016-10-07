@@ -20,7 +20,11 @@
 		<div class="wrap">
 			<?php
 			get_template_part( 'components/footer/footer', 'widgets' );
+			?>
 
+			<div class="footer-ephemera">
+
+			<?php
 			if ( has_nav_menu( 'social' ) ) : ?>
 				<nav class="social-navigation" role="navigation" aria-label="<?php _e( 'Footer Social Links Menu', 'twentyseventeen' ); ?>">
 					<?php
@@ -37,6 +41,7 @@
 
 			get_template_part( 'components/footer/site', 'info' );
 			?>
+		</div><!-- .footer-ephemera -->
 		</div><!-- .wrap -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
